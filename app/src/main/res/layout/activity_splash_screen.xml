@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="100dp"
         android:fontFamily="@font/couture_bld"
-        android:text="Lower Thirds"
+        android:text="CDN Control"
         android:textAlignment="center"
         android:textColor="@color/gold"
         android:textSize="50sp"
