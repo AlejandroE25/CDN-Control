@@ -19,16 +19,13 @@
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="nosensor"
             android:exported="false" />
         <activity
             android:name=".ptz_control"
-            android:screenOrientation="nosensor"
             android:exported="false" />
         <activity
             android:name=".splash_screen"
-            android:exported="true"
-            android:screenOrientation="nosensor">
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -37,8 +34,7 @@
         </activity>
         <activity
             android:name=".lower_thirds"
-            android:exported="false"
-            android:screenOrientation="nosensor" />
+            android:exported="false" />
 
         <meta-data
             android:name="preloaded_fonts"
