@@ -3,12 +3,17 @@ package org.cdn.lowerthirds;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.widget.VideoView;
 
 import java.util.Objects;
 
 public class splash_screen extends AppCompatActivity {
+
+    VideoView videoView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,15 +21,25 @@ public class splash_screen extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
         Objects.requireNonNull(getSupportActionBar()).hide();
 
+        videoView = (VideoView) findViewById(R.id.splashVideo);
 
-        // wait 3 seconds before starting the main activity
-        new Handler().postDelayed(new Runnable() {
+        Uri video = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.splashscreen);
+        videoView.setVideoURI(video);
+
+        videoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
             @Override
-            public void run() {
-                Intent intent = new Intent(splash_screen.this, MainActivity.class);
-                startActivity(intent);
-                finish();
+            public void onCompletion(MediaPlayer mediaPlayer) {
+                startNextActivity();
             }
-        }, 3000);
+        });
+
+        videoView.start();
+    }
+
+    private void startNextActivity() {
+        if (isFinishing())
+            return;
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }
